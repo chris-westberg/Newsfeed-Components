@@ -111,3 +111,40 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+const element = (el) => {
+  let newElement = document.createElement(el)
+  return newElement
+}
+
+const append = (parent, child) => {
+  parent.appendChild(child)
+}
+
+const text = (el, con) => {
+  el.textContent = con
+}
+
+const classes = (el, title) => {
+  el.classList.add(title)
+}
+const articleMaker = (title, date) => {
+  const article = element('div')
+  const titleTag = element('h2')
+  const dateTag = element('p')
+  const para1 = element('p')
+  const para2 = element('p')
+  const para3 = element('p')
+  const expandButton = element('span')
+  
+  append(article, titleTag)
+  append(article, dateTag)
+  append(article, para1)
+  append(article, para2)
+  append(article, para3)
+  append(article, expandButton)
+
+  classes(article, 'article')
+  classes(dateTag, 'date')
+  classes()
+
+}
