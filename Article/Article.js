@@ -85,6 +85,20 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'This is the first one I added',
+    date: 'Whatever Todays date is', 
+    firstParagraph: 'Well if it aint Mr. Nobody!', 
+    secondParagraph: 'AAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRGGGGGGGGGGGGGGHHHHHH!!!!!!!!!', 
+    thirdParagraph: 'That was dramatic...'
+  },
+  {
+    title: 'This is the second one I added',
+    date: 'Whatever Todays date will be', 
+    firstParagraph: 'There is no other person that I would rather be with!', 
+    secondParagraph: 'Whenever you sing, I feel the music in my soul!', 
+    thirdParagraph: 'Oh...I though you were someone else...sorry...'
   }
 ];
 
@@ -111,6 +125,8 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+//------SHORTHAND FUNCTIONS--------
 const element = (el) => {
   let newElement = document.createElement(el)
   return newElement
@@ -127,7 +143,9 @@ const text = (el, con) => {
 const classes = (el, title) => {
   el.classList.add(title)
 }
-const articleMaker = (title, date) => {
+//------SHORTHAND FUNCTIONS--------
+
+const articleMaker = (title, date, first, second, third) => {
   const article = element('div')
   const titleTag = element('h2')
   const dateTag = element('p')
@@ -135,6 +153,18 @@ const articleMaker = (title, date) => {
   const para2 = element('p')
   const para3 = element('p')
   const expandButton = element('span')
+  console.log(expandButton)
+
+  text(titleTag, title)
+  text(dateTag, date)
+  text(para1, first)
+  text(para2, second)
+  text(para3, third)
+  text(expandButton, '…………………')
+
+  expandButton.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  })
   
   append(article, titleTag)
   append(article, dateTag)
@@ -145,6 +175,15 @@ const articleMaker = (title, date) => {
 
   classes(article, 'article')
   classes(dateTag, 'date')
-  classes()
+  classes(expandButton, 'expandButton')
 
+  return article
 }
+
+
+
+let container = document.querySelector('.articles')
+
+data.forEach(el => {
+  container.appendChild(articleMaker(el.title, el.date, el.firstParagraph, el.secondParagraph, el.thirdParagraph))
+});
